@@ -77,7 +77,7 @@ get_header();
 
     <section class="common" id="aboutUs">
         <div class="container">
-            <div class="row  justify-content-between align-items-end">
+            <div class="row  justify-content-between align-items-center">
                 <!-- Left Column: Image -->
                 <div class="col-lg-4">
                     <?php
@@ -144,7 +144,7 @@ get_header();
                     ?>
                 </div>
             </div>
-            <div class="row justify-content-between align-items-end">
+            <div class="row justify-content-between align-items-center">
                 <!-- Left Column: Image -->
                 <div class="col-lg-4">
                     <div class="uploaded-video">
@@ -217,7 +217,7 @@ get_header();
                     ?>
                 </div>
             </div>
-            <div class="row justify-content-between  align-items-end">
+            <div class="row justify-content-between  align-items-center">
                 <!-- Left Column: Image -->
                 <div class="col-lg-4">
                 <div class="uploaded-video">

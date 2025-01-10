@@ -14,7 +14,7 @@
                     <div class="col-lg-3 footerCustom">
                         <?php dynamic_sidebar('footer-left'); ?> 
                     </div>
-                    <div class="col-lg-3 footerCustom">
+                    <div class="col-lg-4 footerCustom">
                     <?php dynamic_sidebar('footer-right'); ?> 
                     </div>
                     
