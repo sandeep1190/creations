@@ -342,6 +342,9 @@ h2.factory-title {
     font-weight: 400;
     color: #000;
 }
+h1.site-title-heading img {
+    width: 240px;
+}
 .service-inner-description {
     font-size: 21.3333px;
     color: #000;
