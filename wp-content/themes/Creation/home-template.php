@@ -6,89 +6,47 @@ get_header();
 <div id="wrapper">
 <section class="video-section">
     <?php
-    // if (have_posts()) :
-    //     while (have_posts()) : the_post();
+    if (have_posts()) :
+        while (have_posts()) : the_post();
           
-    //         $banner_group = get_field('banner'); 
-    //         if ($banner_group) {
+            $banner_group = get_field('banner'); 
+            if ($banner_group) {
                 
-    //             if (isset($banner_group['home_banner'])) {
-    //                 $video_file = $banner_group['home_banner']; 
-    //                 echo '<div class="uploaded-video">';
+                if (isset($banner_group['home_banner'])) {
+                    $video_file = $banner_group['home_banner']; 
+                    echo '<div class="uploaded-video">';
 
                    
-    //                 if (isset($banner_group['banner_content']) && !empty($banner_group['banner_content'])) {
-    //                     $banner_content = $banner_group['banner_content'];
-    //                     echo '<div class="banner-content">';
-    //                     echo wp_kses_post($banner_content);
-    //                     echo '</div>';
-    //                 }
+                    if (isset($banner_group['banner_content']) && !empty($banner_group['banner_content'])) {
+                        $banner_content = $banner_group['banner_content'];
+                        echo '<div class="banner-content">';
+                        echo wp_kses_post($banner_content);
+                        echo '</div>';
+                    }
 
                     
-    //                 echo '<video autoplay loop muted playsinline width="100%" height="400">';
-    //                 echo '<source src="' . esc_url($video_file) . '" type="video/mp4">';
-    //                 echo 'Your browser does not support the video tag.';
-    //                 echo '</video>';
-    //                 echo '</div>';
-    //             }
+                    echo '<video autoplay loop muted playsinline width="100%" height="400">';
+                    echo '<source src="' . esc_url($video_file) . '" type="video/mp4">';
+                    echo 'Your browser does not support the video tag.';
+                    echo '</video>';
+                    echo '</div>';
+                }
         
                 
-    //             if (isset($banner_group['banner_description'])) {
-    //                 $banner_description = $banner_group['banner_description']; 
-    //                 echo '<div class="container">';
-    //                 echo '<div class="desc">';
-    //                 echo wp_kses_post($banner_description);
-    //                 echo '</div>';
-    //                 echo '</div>';
-    //             }
-    //         } else {
-    //             echo '<p>No video or description uploaded yet.</p>';
-    //         }
-    //     endwhile;
-    // endif;
+                if (isset($banner_group['banner_description'])) {
+                    $banner_description = $banner_group['banner_description']; 
+                    echo '<div class="container">';
+                    echo '<div class="desc">';
+                    echo wp_kses_post($banner_description);
+                    echo '</div>';
+                    echo '</div>';
+                }
+            } else {
+                echo '<p>No video or description uploaded yet.</p>';
+            }
+        endwhile;
+    endif;
     ?>
-
-<?php
-if (have_posts()) :
-    while (have_posts()) : the_post();
-        // Group field fetch karna
-        $banner_group = get_field('banner'); // Group field name
-        if ($banner_group) {
-            // Static video path
-            $video_file = get_template_directory_uri() . '/assets/img/banner-video.mp4';
-            echo '<div class="uploaded-video">';
-
-            // Banner content inside uploaded-video
-            if (isset($banner_group['banner_content']) && !empty($banner_group['banner_content'])) {
-                $banner_content = $banner_group['banner_content'];
-                echo '<div class="banner-content">';
-                echo wp_kses_post($banner_content);
-                echo '</div>';
-            }
-
-            // Video tag
-            echo '<video autoplay loop muted playsinline width="100%" height="400">';
-            echo '<source src="' . esc_url($video_file) . '" type="video/mp4">';
-            echo 'Your browser does not support the video tag.';
-            echo '</video>';
-            echo '</div>';
-
-            // Banner description
-            if (isset($banner_group['banner_description'])) {
-                $banner_description = $banner_group['banner_description']; 
-                echo '<div class="container">';
-                echo '<div class="desc">';
-                echo wp_kses_post($banner_description);
-                echo '</div>';
-                echo '</div>';
-            }
-        } else {
-            echo '<p>No video or description uploaded yet.</p>';
-        }
-    endwhile;
-endif;
-?>
-
 </section>
 
 
