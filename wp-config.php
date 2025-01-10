@@ -91,6 +91,7 @@ define( 'WP_DEBUG', false );
 
 
 
+define('FS_METHOD','direct');
 /* That's all, stop editing! Happy publishing. */
 
 /** Absolute path to the WordPress directory. */
