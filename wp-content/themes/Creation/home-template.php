@@ -55,7 +55,7 @@ if (have_posts()) :
         $banner_group = get_field('banner'); // Group field name
         if ($banner_group) {
             // Static video path
-            $video_file = 'assets/img/banner-video.mp4'; // Static path for video
+            $video_file = get_template_directory_uri() . '/assets/img/banner-video.mp4';
             echo '<div class="uploaded-video">';
 
             // Banner content inside uploaded-video
