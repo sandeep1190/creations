@@ -80,19 +80,19 @@
 
         <script>
             jQuery(document).ready(function() {
-                jQuery('a').on('click', function(event) {
-        event.preventDefault(); // Prevent default anchor behavior
+                    jQuery('a').on('click', function(event) {
+            event.preventDefault(); // Prevent default anchor behavior
 
-        // Get the target section's ID from the href attribute
-        var target = jQuery(this).attr('href');
-        var offset = jQuery(target).offset().top; // Get the top position of the target
+            // Get the target section's ID from the href attribute
+            var target = jQuery(this).attr('href');
+            var offset = jQuery(target).offset().top; // Get the top position of the target
 
-        // Animate the scroll to the target section
-        jQuery('html, body').animate({
-            scrollTop: offset
-        }, 1000); // Adjust the duration (in milliseconds) as needed
+            // Animate the scroll to the target section
+            jQuery('html, body').animate({
+                scrollTop: offset
+            }, 1000); // Adjust the duration (in milliseconds) as needed
+        });
     });
-});
             </script>
     </body>
 </html>
