@@ -9,7 +9,7 @@ get_header();
     if (have_posts()) :
         while (have_posts()) : the_post();
           
-            $banner_group = get_field('banner'); 
+            $banner_group = get_field('banner');  
             if ($banner_group) {
                 
                 if (isset($banner_group['home_banner'])) {
