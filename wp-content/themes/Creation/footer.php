@@ -79,7 +79,7 @@
         <!--end WordPress footer-->
 
         <script>
-            jQuery(document).ready(function() {
+            jQuery(document).ready(function() { 
                     jQuery('a').on('click', function(event) {
             event.preventDefault(); // Prevent default anchor behavior
 
