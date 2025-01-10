@@ -43,28 +43,28 @@
                         <div class="row">
                             <div class="blockImg">
                                 <div class="innerlogo">
-                                <img src="http://creation.byethost9.com/wp-content/uploads/2024/12/width_201.png">
+                                <img src="http://3.6.49.70/creations/wp-content/uploads/2024/12/width_201.png">
                                 </div>
                                     
                             </div>
                             <div class="blockImg">
                                 <div class="innerlogo">
-                                    <img src="http://creation.byethost9.com/wp-content/uploads/2025/01/IGI-logo.png">
+                                    <img src="http://3.6.49.70/creations/wp-content/uploads/2025/01/IGI-logo.png">
                                 </div>
                             </div>
                             <div class="blockImg">
                                 <div class="innerlogo">
-                                    <img src="http://creation.byethost9.com/wp-content/uploads/2025/01/GIA-logo.png">
+                                    <img src="http://3.6.49.70/creations/wp-content/uploads/2025/01/GIA-logo.png">
                                 </div>
                             </div>
                             <div class="blockImg">
                                 <div class="innerlogo">
-                                    <img src="http://creation.byethost9.com/wp-content/uploads/2025/01/Costco-logo.png">
+                                    <img src="http://3.6.49.70/creations/wp-content/uploads/2025/01/Costco-logo.png">
                                 </div>
                             </div>
                             <div class="blockImg">
                                 <div class="innerlogo">
-                                    <img src="http://creation.byethost9.com/wp-content/uploads/2025/01/Walmart-logo.png">
+                                    <img src="http://3.6.49.70/creations/wp-content/uploads/2025/01/Walmart-logo.png">
                                 </div>
                             </div>
                         </div>

@@ -149,7 +149,7 @@ get_header();
                 <div class="col-lg-4">
                     <div class="uploaded-video">
                     <video autoplay loop muted>
-    <source src="http://creation.byethost9.com/wp-content/uploads/2025/01/factory1.mp4" type="video/mp4" />
+    <source src="http://3.6.49.70/creations/wp-content/uploads/2025/01/factory1.mp4" type="video/mp4" />
 </video>
                 </div>
     <!-- <?php
@@ -222,7 +222,7 @@ get_header();
                 <div class="col-lg-4">
                 <div class="uploaded-video">
                     <video autoplay loop muted>
-    <source src="http://creation.byethost9.com/wp-content/uploads/2025/01/factory2.mp4" type="video/mp4" />
+    <source src="http://3.6.49.70/creations/wp-content/uploads/2025/01/factory2.mp4" type="video/mp4" />
 </video>
                 </div>
     <!-- <?php
