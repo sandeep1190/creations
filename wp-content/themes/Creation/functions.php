@@ -94,7 +94,7 @@ function submit_custom_form() {
     if (empty($phone) || !preg_match('/^\d{10,15}$/', $phone)) wp_send_json_error('Phone number must be 10-15 digits.');
 
     // Send email to admin
-    $to = 'admin@example.com'; // Replace with your admin email
+    $to = 'sndpdhiman11@gmail.com'; // Replace with your admin email
     $subject = 'New Form Submission';
     $message = "First Name: $first_name\nLast Name: $last_name\nCompany: $company\nEmail: $email\nPhone: $phone\n";
     $headers = ['Content-Type: text/plain; charset=UTF-8'];
