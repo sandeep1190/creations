@@ -489,30 +489,26 @@ get_header();
                     <?php endif; ?>
                     <?php if ($contact_form_shortcode): ?>
                         <div class="contact-form">
-                        <div id="form-message" style="color: green; display: none;"></div>
-<div id="form-error" style="color: red; display: none;"></div>
+                        <form id="contactForm" method="post" action="">
+    <label for="first_name">First Name:</label>
+    <input type="text" id="first_name" name="first_name" required>
 
-<form id="customForm">
-    <label for="first_name">First Name *</label>
-    <input type="text" id="first_name" name="first_name" required><br>
+    <label for="last_name">Last Name:</label>
+    <input type="text" id="last_name" name="last_name" required>
 
-    <label for="last_name">Last Name *</label>
-    <input type="text" id="last_name" name="last_name" required><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
 
-    <label for="company">Company *</label>
-    <input type="text" id="company" name="company" required><br>
+    <label for="phone">Phone:</label>
+    <input type="text" id="phone" name="phone" required>
 
-    <label for="email">Email *</label>
-    <input type="email" id="email" name="email" required><br>
+    <label for="comments">Comments:</label>
+    <textarea id="comments" name="comments"></textarea>
 
-    <label for="phone">Phone *</label>
-    <input type="text" id="phone" name="phone" required><br>
-
-    <label for="comments">Comments</label>
-    <textarea id="comments" name="comments"></textarea><br>
-
-    <button type="submit">Submit</button>
+    <button type="submit" name="submit_contact_form">Submit</button>
 </form>
+
+<div id="formMessage"></div>
 
 
                         </div>

@@ -72,52 +72,60 @@ $ThemeHelp->addActionsFilters();
 unset($ThemeHelp);
 
 
-add_action('wp_ajax_submit_custom_form', 'submit_custom_form');
-add_action('wp_ajax_nopriv_submit_custom_form', 'submit_custom_form');
-
-function submit_custom_form() {
-    // Validate nonce
-    check_ajax_referer('custom_form_nonce', 'security');
-
-    // Retrieve and sanitize form data
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact_form'])) {
+    // Sanitize and validate input fields
     $first_name = sanitize_text_field($_POST['first_name']);
     $last_name = sanitize_text_field($_POST['last_name']);
-    $company = sanitize_text_field($_POST['company']);
     $email = sanitize_email($_POST['email']);
     $phone = sanitize_text_field($_POST['phone']);
+    $comments = sanitize_textarea_field($_POST['comments']);
 
-    // Field-specific validation
-    if (empty($first_name)) wp_send_json_error('First Name is required.');
-    if (empty($last_name)) wp_send_json_error('Last Name is required.');
-    if (empty($company)) wp_send_json_error('Company is required.');
-    if (empty($email) || !is_email($email)) wp_send_json_error('Valid Email is required.');
-    if (empty($phone) || !preg_match('/^\d{10,15}$/', $phone)) wp_send_json_error('Phone number must be 10-15 digits.');
+    if (!is_email($email)) {
+        echo '<script>document.getElementById("formMessage").innerText = "Invalid email address.";</script>';
+        exit;
+    }
 
-    // Send email to admin
-    $to = 'sndpdhiman11@gmail.com'; // Replace with your admin email
-    $subject = 'New Form Submission';
-    $message = "First Name: $first_name\nLast Name: $last_name\nCompany: $company\nEmail: $email\nPhone: $phone\n";
-    $headers = ['Content-Type: text/plain; charset=UTF-8'];
+    // Prepare email
+    $to = 'sndpdhiman11@gmail.com'; // Replace with the recipient email
+    $subject = 'New Contact Form Submission';
+    $message = "
+        <h3>Contact Form Submission</h3>
+        <p><strong>First Name:</strong> $first_name</p>
+        <p><strong>Last Name:</strong> $last_name</p>
+        <p><strong>Email:</strong> $email</p>
+        <p><strong>Phone:</strong> $phone</p>
+        <p><strong>Comments:</strong> $comments</p>
+    ";
+    $headers = [
+        'Content-Type: text/html; charset=UTF-8',
+        'From: Creation Jewel <info@creationjewel.co.in>'
+    ];
 
+    // Send email
     if (wp_mail($to, $subject, $message, $headers)) {
-        // Send confirmation email to user
-        $user_message = "Thank you for submitting the form. We will get back to you soon.";
-        wp_mail($email, 'Form Submission Confirmation', $user_message, $headers);
-
-        wp_send_json_success('Form submitted successfully!');
+        echo '<script>document.getElementById("formMessage").innerText = "Email sent successfully!";</script>';
     } else {
-        wp_send_json_error('Failed to send email. Please try again later.');
+        echo '<script>document.getElementById("formMessage").innerText = "Failed to send email. Please try again later.";</script>';
     }
 }
 
+add_action('wp_mail_failed', function ($wp_error) {
+    error_log(print_r($wp_error, true));
+});
 
-function enqueue_custom_form_script() {
-    wp_enqueue_script('custom-form-script', get_template_directory_uri() . '/custom-form.js', ['jquery'], null, true);
-    wp_localize_script('custom-form-script', 'customForm', [
-        'ajax_url' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('custom_form_nonce')
-    ]);
+
+add_action('phpmailer_init', 'configure_outlook_smtp');
+function configure_outlook_smtp(PHPMailer $phpmailer) {
+    $phpmailer->isSMTP();
+    $phpmailer->Host = 'smtp.office365.com'; // Outlook SMTP server
+    $phpmailer->SMTPAuth = true;
+    $phpmailer->Port = 587; // SMTP port for STARTTLS
+    $phpmailer->SMTPSecure = 'tls'; // Encryption type
+    $phpmailer->Username = 'info@creationjewel.co.in'; // Your Outlook email
+    $phpmailer->Password = 'Guy48071'; // Your Outlook password
+    $phpmailer->From = 'info@creationjewel.co.in'; // Sender email
+    $phpmailer->FromName = 'Creation Jewel'; // Sender name
 }
-add_action('wp_enqueue_scripts', 'enqueue_custom_form_script');
+
 
 
