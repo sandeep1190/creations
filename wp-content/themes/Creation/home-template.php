@@ -489,7 +489,69 @@ get_header();
                     <?php endif; ?>
                     <?php if ($contact_form_shortcode): ?>
                         <div class="contact-form">
-                            <?php echo do_shortcode($contact_form_shortcode); ?>
+                        <?php
+                            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['custom_form_submit'])) {
+                                $first_name = sanitize_text_field($_POST['first_name']);
+                                $last_name = sanitize_text_field($_POST['last_name']);
+                                $company = sanitize_text_field($_POST['company']);
+                                $email = sanitize_email($_POST['email']);
+                                $phone = sanitize_text_field($_POST['phone']);
+                                $comments = sanitize_textarea_field($_POST['comments']);
+                                $file = $_FILES['attachment'];
+
+                                // Required fields validation
+                                if (!$first_name || !$last_name || !$company || !$email || !$phone || empty($file['name'])) {
+                                    echo '<p style="color: red;">All fields except comments are required.</p>';
+                                } else {
+                                    // Handle file upload
+                                    $upload_dir = wp_upload_dir();
+                                    $upload_path = $upload_dir['path'] . '/' . basename($file['name']);
+                                    move_uploaded_file($file['tmp_name'], $upload_path);
+
+                                    // Email content
+                                    $to = 'sndpdhiman11@gmail.com'; // Replace with your admin email
+                                    $subject = 'Form Submission';
+                                    $message = "First Name: $first_name\nLast Name: $last_name\nCompany: $company\nEmail: $email\nPhone: $phone\nComments: $comments\n";
+                                    $headers = ['Content-Type: text/plain; charset=UTF-8'];
+
+                                    // Attach file
+                                    $attachments = [$upload_path];
+
+                                    // Send mail
+                                    if (wp_mail($to, $subject, $message, $headers, $attachments)) {
+                                        echo '<p style="color: green;">Form submitted successfully!</p>';
+
+                                        // Send confirmation email to user
+                                        $user_message = "Thank you for submitting the form. We will get back to you soon.";
+                                        wp_mail($email, 'Form Submission Confirmation', $user_message, $headers);
+                                    } else {
+                                        echo '<p style="color: red;">Failed to send email. Please try again later.</p>';
+                                    }
+                                }
+                            }
+                            ?>
+
+                            <form method="post" enctype="multipart/form-data">
+                                <label for="first_name">First Name *</label>
+                                <input type="text" id="first_name" name="first_name" required><br>
+
+                                <label for="last_name">Last Name *</label>
+                                <input type="text" id="last_name" name="last_name" required><br>
+
+                                <label for="company">Company *</label>
+                                <input type="text" id="company" name="company" required><br>
+
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required><br>
+
+                                <label for="phone">Phone *</label>
+                                <input type="text" id="phone" name="phone" required><br>
+
+                                <label for="comments">Comments</label>
+                                <textarea id="comments" name="comments"></textarea><br>
+
+                                <button type="submit" name="custom_form_submit">Submit</button>
+                            </form>
                         </div>
                     <?php endif; ?>
                 </div>

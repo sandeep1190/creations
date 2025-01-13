@@ -70,3 +70,4 @@ unset($WidgetHooks);
 $ThemeHelp = new \BootstrapBasic4\Controller\ThemeHelp();
 $ThemeHelp->addActionsFilters();
 unset($ThemeHelp);
+
