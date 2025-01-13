@@ -581,7 +581,13 @@ color:#fff;
     margin: 0 0 40px;
     text-align: center;
 }
+.footerInner ul li {
+    margin: 0 0 14px;
+}
 
+.footerInner ul li a {
+    text-transform: capitalize;
+}
 @media (max-width:1440px){
     .navbar-nav li {
         padding: 0 40px;
