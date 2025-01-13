@@ -85,29 +85,21 @@ function submit_custom_form() {
     $company = sanitize_text_field($_POST['company']);
     $email = sanitize_email($_POST['email']);
     $phone = sanitize_text_field($_POST['phone']);
-    $comments = sanitize_textarea_field($_POST['comments']);
-    $file = $_FILES['attachment'];
 
-    // Required fields validation
-    if (!$first_name || !$last_name || !$company || !$email || !$phone || empty($file['name'])) {
-        wp_send_json_error('All fields except comments are required.');
-    }
-
-    // Handle file upload
-    // $upload_dir = wp_upload_dir();
-    // $upload_path = $upload_dir['path'] . '/' . basename($file['name']);
-    // if (!move_uploaded_file($file['tmp_name'], $upload_path)) {
-    //     wp_send_json_error('File upload failed.');
-    // }
+    // Field-specific validation
+    if (empty($first_name)) wp_send_json_error('First Name is required.');
+    if (empty($last_name)) wp_send_json_error('Last Name is required.');
+    if (empty($company)) wp_send_json_error('Company is required.');
+    if (empty($email) || !is_email($email)) wp_send_json_error('Valid Email is required.');
+    if (empty($phone) || !preg_match('/^\d{10,15}$/', $phone)) wp_send_json_error('Phone number must be 10-15 digits.');
 
     // Send email to admin
-    $to = 'sndpdhiman11@gmail.com'; // Replace with your admin email
+    $to = 'admin@example.com'; // Replace with your admin email
     $subject = 'New Form Submission';
-    $message = "First Name: $first_name\nLast Name: $last_name\nCompany: $company\nEmail: $email\nPhone: $phone\nComments: $comments\n";
+    $message = "First Name: $first_name\nLast Name: $last_name\nCompany: $company\nEmail: $email\nPhone: $phone\n";
     $headers = ['Content-Type: text/plain; charset=UTF-8'];
-    $attachments = [$upload_path];
 
-    if (wp_mail($to, $subject, $message, $headers, $attachments)) {
+    if (wp_mail($to, $subject, $message, $headers)) {
         // Send confirmation email to user
         $user_message = "Thank you for submitting the form. We will get back to you soon.";
         wp_mail($email, 'Form Submission Confirmation', $user_message, $headers);
@@ -127,4 +119,5 @@ function enqueue_custom_form_script() {
     ]);
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_form_script');
+
 
