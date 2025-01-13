@@ -72,21 +72,24 @@ $ThemeHelp->addActionsFilters();
 unset($ThemeHelp);
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact_form'])) {
-    // Sanitize and validate input fields
+add_action('wp_ajax_submit_contact_form', 'handle_contact_form');
+add_action('wp_ajax_nopriv_submit_contact_form', 'handle_contact_form');
+
+function handle_contact_form() {
+    // Sanitize input data
     $first_name = sanitize_text_field($_POST['first_name']);
     $last_name = sanitize_text_field($_POST['last_name']);
     $email = sanitize_email($_POST['email']);
     $phone = sanitize_text_field($_POST['phone']);
     $comments = sanitize_textarea_field($_POST['comments']);
 
+    // Validate email
     if (!is_email($email)) {
-        echo '<script>document.getElementById("formMessage").innerText = "Invalid email address.";</script>';
-        exit;
+        wp_send_json_error('Invalid email address.');
     }
 
     // Prepare email
-    $to = 'sndpdhiman11@gmail.com'; // Replace with the recipient email
+    $to = 'sndpdhiman11@gmail.com'; // Replace with your recipient email
     $subject = 'New Contact Form Submission';
     $message = "
         <h3>Contact Form Submission</h3>
@@ -103,29 +106,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact_form']
 
     // Send email
     if (wp_mail($to, $subject, $message, $headers)) {
-        echo '<script>document.getElementById("formMessage").innerText = "Email sent successfully!";</script>';
+        wp_send_json_success('Email sent successfully!');
     } else {
-        echo '<script>document.getElementById("formMessage").innerText = "Failed to send email. Please try again later.";</script>';
+        wp_send_json_error('Failed to send email. Please try again later.');
     }
 }
 
-add_action('wp_mail_failed', function ($wp_error) {
-    error_log(print_r($wp_error, true));
-});
 
-
-add_action('phpmailer_init', 'configure_outlook_smtp');
-function configure_outlook_smtp(PHPMailer $phpmailer) {
-    $phpmailer->isSMTP();
-    $phpmailer->Host = 'smtp.office365.com'; // Outlook SMTP server
-    $phpmailer->SMTPAuth = true;
-    $phpmailer->Port = 587; // SMTP port for STARTTLS
-    $phpmailer->SMTPSecure = 'tls'; // Encryption type
-    $phpmailer->Username = 'info@creationjewel.co.in'; // Your Outlook email
-    $phpmailer->Password = 'Guy48071'; // Your Outlook password
-    $phpmailer->From = 'info@creationjewel.co.in'; // Sender email
-    $phpmailer->FromName = 'Creation Jewel'; // Sender name
+add_action('wp_enqueue_scripts', 'enqueue_contact_form_script');
+function enqueue_contact_form_script() {
+    wp_enqueue_script('contact-form-ajax', get_template_directory_uri() . '/contact-form.js', ['jquery'], null, true);
+    wp_localize_script('contact-form-ajax', 'ajax_object', [
+        'ajax_url' => admin_url('admin-ajax.php'),
+    ]);
 }
+
+
 
 
 

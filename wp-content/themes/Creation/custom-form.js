@@ -1,33 +1,34 @@
 jQuery(document).ready(function ($) {
-    $('#customForm').on('submit', function (e) {
-        e.preventDefault();
+    $('#submitForm').on('click', function () {
+        // Clear previous messages
+        $('#formMessage').text('');
 
-        // Create FormData object
-        var formData = new FormData(this);
-        formData.append('action', 'submit_custom_form');
-        formData.append('security', customForm.nonce);
+        // Collect form data
+        var formData = {
+            action: 'submit_contact_form',
+            first_name: $('#first_name').val(),
+            last_name: $('#last_name').val(),
+            email: $('#email').val(),
+            phone: $('#phone').val(),
+            comments: $('#comments').val(),
+        };
 
-        // AJAX request
+        // Send AJAX request
         $.ajax({
-            url: customForm.ajax_url,
+            url: ajax_object.ajax_url,
             type: 'POST',
             data: formData,
-            contentType: false,
-            processData: false,
             success: function (response) {
                 if (response.success) {
-                    $('#form-message').text(response.data).show();
-                    $('#form-error').hide();
-                    $('#customForm')[0].reset(); // Reset the form
+                    $('#formMessage').css('color', 'green').text(response.data);
+                    $('#contactForm')[0].reset(); // Reset form
                 } else {
-                    $('#form-error').text(response.data).show();
-                    $('#form-message').hide();
+                    $('#formMessage').css('color', 'red').text(response.data);
                 }
             },
             error: function () {
-                $('#form-error').text('An unexpected error occurred.').show();
-                $('#form-message').hide();
-            }
+                $('#formMessage').css('color', 'red').text('An unexpected error occurred.');
+            },
         });
     });
 });
