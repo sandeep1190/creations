@@ -94,14 +94,14 @@ function submit_custom_form() {
     }
 
     // Handle file upload
-    $upload_dir = wp_upload_dir();
-    $upload_path = $upload_dir['path'] . '/' . basename($file['name']);
-    if (!move_uploaded_file($file['tmp_name'], $upload_path)) {
-        wp_send_json_error('File upload failed.');
-    }
+    // $upload_dir = wp_upload_dir();
+    // $upload_path = $upload_dir['path'] . '/' . basename($file['name']);
+    // if (!move_uploaded_file($file['tmp_name'], $upload_path)) {
+    //     wp_send_json_error('File upload failed.');
+    // }
 
     // Send email to admin
-    $to = 'admin@example.com'; // Replace with your admin email
+    $to = 'sndpdhiman11@gmail.com'; // Replace with your admin email
     $subject = 'New Form Submission';
     $message = "First Name: $first_name\nLast Name: $last_name\nCompany: $company\nEmail: $email\nPhone: $phone\nComments: $comments\n";
     $headers = ['Content-Type: text/plain; charset=UTF-8'];

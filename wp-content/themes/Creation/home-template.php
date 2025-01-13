@@ -511,9 +511,6 @@ get_header();
                                 <label for="comments">Comments</label>
                                 <textarea id="comments" name="comments"></textarea><br>
 
-                                <label for="attachment">File *</label>
-                                <input type="file" id="attachment" name="attachment" required><br>
-
                                 <button type="submit">Submit</button>
                             </form>
 
