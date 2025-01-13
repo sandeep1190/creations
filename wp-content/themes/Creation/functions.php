@@ -112,7 +112,6 @@ function handle_contact_form() {
     }
 }
 
-
 add_action('wp_enqueue_scripts', 'enqueue_contact_form_script');
 function enqueue_contact_form_script() {
     wp_enqueue_script('contact-form-ajax', get_template_directory_uri() . '/contact-form.js', ['jquery'], null, true);

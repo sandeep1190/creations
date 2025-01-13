@@ -1,5 +1,7 @@
 jQuery(document).ready(function ($) {
-    $('#submitForm').on('click', function () {
+    $('#submitForm').on('click', function (e) {
+        e.preventDefault(); // Prevent page refresh on form submit
+
         // Clear previous messages
         $('#formMessage').text('');
 
