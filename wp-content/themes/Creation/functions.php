@@ -71,3 +71,60 @@ $ThemeHelp = new \BootstrapBasic4\Controller\ThemeHelp();
 $ThemeHelp->addActionsFilters();
 unset($ThemeHelp);
 
+
+add_action('wp_ajax_submit_custom_form', 'submit_custom_form');
+add_action('wp_ajax_nopriv_submit_custom_form', 'submit_custom_form');
+
+function submit_custom_form() {
+    // Validate nonce
+    check_ajax_referer('custom_form_nonce', 'security');
+
+    // Retrieve and sanitize form data
+    $first_name = sanitize_text_field($_POST['first_name']);
+    $last_name = sanitize_text_field($_POST['last_name']);
+    $company = sanitize_text_field($_POST['company']);
+    $email = sanitize_email($_POST['email']);
+    $phone = sanitize_text_field($_POST['phone']);
+    $comments = sanitize_textarea_field($_POST['comments']);
+    $file = $_FILES['attachment'];
+
+    // Required fields validation
+    if (!$first_name || !$last_name || !$company || !$email || !$phone || empty($file['name'])) {
+        wp_send_json_error('All fields except comments are required.');
+    }
+
+    // Handle file upload
+    $upload_dir = wp_upload_dir();
+    $upload_path = $upload_dir['path'] . '/' . basename($file['name']);
+    if (!move_uploaded_file($file['tmp_name'], $upload_path)) {
+        wp_send_json_error('File upload failed.');
+    }
+
+    // Send email to admin
+    $to = 'admin@example.com'; // Replace with your admin email
+    $subject = 'New Form Submission';
+    $message = "First Name: $first_name\nLast Name: $last_name\nCompany: $company\nEmail: $email\nPhone: $phone\nComments: $comments\n";
+    $headers = ['Content-Type: text/plain; charset=UTF-8'];
+    $attachments = [$upload_path];
+
+    if (wp_mail($to, $subject, $message, $headers, $attachments)) {
+        // Send confirmation email to user
+        $user_message = "Thank you for submitting the form. We will get back to you soon.";
+        wp_mail($email, 'Form Submission Confirmation', $user_message, $headers);
+
+        wp_send_json_success('Form submitted successfully!');
+    } else {
+        wp_send_json_error('Failed to send email. Please try again later.');
+    }
+}
+
+
+function enqueue_custom_form_script() {
+    wp_enqueue_script('custom-form-script', get_template_directory_uri() . '/custom-form.js', ['jquery'], null, true);
+    wp_localize_script('custom-form-script', 'customForm', [
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('custom_form_nonce')
+    ]);
+}
+add_action('wp_enqueue_scripts', 'enqueue_custom_form_script');
+
