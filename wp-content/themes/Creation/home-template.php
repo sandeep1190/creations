@@ -489,7 +489,7 @@ get_header();
                     <?php endif; ?>
                     <?php if ($contact_form_shortcode): ?>
                         <div class="contact-form">
-                            <?php echo do_shortcode($contact_form_shortcode); ?>
+                            <?php echo do_shortcode('[contact-form-7 id="207ddac" title="Contact form 1"]'); ?>
                         </div>
                     <?php endif; ?>
                 </div>
