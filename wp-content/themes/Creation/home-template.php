@@ -489,28 +489,7 @@ get_header();
                     <?php endif; ?>
                     <?php if ($contact_form_shortcode): ?>
                         <div class="contact-form">
-                        <form id="contactForm" method="post" action="">
-    <label for="first_name">First Name:</label>
-    <input type="text" id="first_name" name="first_name" required>
-
-    <label for="last_name">Last Name:</label>
-    <input type="text" id="last_name" name="last_name" required>
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-
-    <label for="phone">Phone:</label>
-    <input type="text" id="phone" name="phone" required>
-
-    <label for="comments">Comments:</label>
-    <textarea id="comments" name="comments"></textarea>
-
-    <button type="submit" name="submit_contact_form">Submit</button>
-</form>
-
-<div id="formMessage"></div>
-
-
+                            <?php echo do_shortcode($contact_form_shortcode); ?>
                         </div>
                     <?php endif; ?>
                 </div>
