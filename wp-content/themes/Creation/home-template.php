@@ -6,54 +6,52 @@ get_header();
 <div id="wrapper">
 <section class="video-section">
     <?php
-    if (have_posts()) :
-        while (have_posts()) : the_post();
-          
-            $banner_group = get_field('banner');  
-            if ($banner_group) {
-                
-                if (isset($banner_group['home_banner'])) {
-                    $video_file = $banner_group['home_banner']; 
-                    echo '<div class="uploaded-video">';
+        if (have_posts()) :
+            while (have_posts()) : the_post();
 
-                   
-                    if (isset($banner_group['banner_content']) && !empty($banner_group['banner_content'])) {
-                        $banner_content = $banner_group['banner_content'];
-                        echo '<div class="banner-content">';
-                        echo wp_kses_post($banner_content);
+                $banner_group = get_field('banner');  
+                if ($banner_group) {
+                    
+                    if (isset($banner_group['home_banner'])) {
+                        $image_file = $banner_group['home_banner']; // Image file path
+                        echo '<div class="uploaded-image">';
+
+                        // Banner content
+                        if (isset($banner_group['banner_content']) && !empty($banner_group['banner_content'])) {
+                            $banner_content = $banner_group['banner_content'];
+                            echo '<div class="banner-content">';
+                            echo wp_kses_post($banner_content);
+                            echo '</div>';
+                        }
+
+                        // Display image
+                        echo '<img src="' . esc_url($image_file) . '" alt="Banner Image">';
                         echo '</div>';
                     }
-
-                    
-                    echo '<video autoplay loop muted playsinline width="100%" height="400">';
-                    echo '<source src="' . esc_url($video_file) . '" type="video/mp4">';
-                    echo 'Your browser does not support the video tag.';
-                    echo '</video>';
-                    echo '</div>';
+            
+                    // Banner description
+                    if (isset($banner_group['banner_description'])) {
+                        $banner_description = $banner_group['banner_description']; 
+                        echo '<div class="container">';
+                        echo '<div class="desc">';
+                        echo wp_kses_post($banner_description);
+                        echo '</div>';
+                        echo '</div>';
+                    }
+                } else {
+                    echo '<p>No image or description uploaded yet.</p>';
                 }
-        
-                
-                if (isset($banner_group['banner_description'])) {
-                    $banner_description = $banner_group['banner_description']; 
-                    echo '<div class="container">';
-                    echo '<div class="desc">';
-                    echo wp_kses_post($banner_description);
-                    echo '</div>';
-                    echo '</div>';
-                }
-            } else {
-                echo '<p>No video or description uploaded yet.</p>';
-            }
-        endwhile;
-    endif;
+            endwhile;
+        endif;
     ?>
+
 </section>
 
 
     <section id="mapSection">
-        <div class="innerlogo text-right">
-            <img src="<?php the_field('home_logo'); ?>">
-        </div>
+        <!-- <div class="innerlogo text-right">
+            <img src="<?php //the_field('home_logo'); ?>">
+        </div> -->
         <div class="container">
             <div class="row justify-content-center">
                 <div class="map text-center">
@@ -221,9 +219,50 @@ get_header();
                 <!-- Left Column: Image -->
                 <div class="col-lg-4">
                 <div class="uploaded-video">
-                    <video autoplay loop muted>
-    <source src="http://3.6.49.70/creations/wp-content/uploads/2025/01/factory2.mp4" type="video/mp4" />
-</video>
+                <?php
+if (have_posts()) :
+    while (have_posts()) : the_post();
+
+        $factory_group = get_field('factory_manufacturing');  
+        if ($factory_group) {
+
+            echo '<div class="owl-theme owl-carousel factoryslider">';
+
+            // Loop through repeater field 'factory_manufacturing_image'
+            if (!empty($factory_group['factory_manufacturing_image'])) {
+                foreach ($factory_group['factory_manufacturing_image'] as $item) {
+                    $gallery_file = $item['gallery_file']; // File (image or video)
+                    
+                    // Check file type and render accordingly
+                    if ($gallery_file) {
+                        $file_type = wp_check_filetype($gallery_file)['ext'];
+                        if (in_array($file_type, ['jpg', 'jpeg', 'png', 'gif'])) {
+                            // Render image
+                            echo '<div class="item uploaded-image">';
+                            echo '<img src="' . esc_url($gallery_file) . '" alt="Factory Image" />';
+                            echo '</div>';
+                        } elseif (in_array($file_type, ['mp4', 'webm', 'ogg'])) {
+                            // Render video
+                            echo '<div class="item uploaded-video">';
+                            echo '<video autoplay loop muted>';
+                            echo '<source src="' . esc_url($gallery_file) . '" type="video/' . esc_attr($file_type) . '" />';
+                            echo 'Your browser does not support the video tag.';
+                            echo '</video>';
+                            echo '</div>';
+                        }
+                    }
+                }
+            }
+
+            echo '</div>'; // End of Owl Carousel
+        } else {
+            echo '<p>No media uploaded yet.</p>';
+        }
+
+    endwhile;
+endif;
+?>
+
                 </div>
     <!-- <?php
     // if ($about_us_group) {
@@ -391,7 +430,7 @@ get_header();
             <div class="row">
                 <div class="col-12">
                     <!-- Owl Carousel Wrapper -->
-                    <div class="owl-carousel owl-theme">
+                    <div class="owl-carousel owl-theme productslider">
     <?php if( have_rows('product_gallery') ): // Check if repeater field has rows ?>
         <?php while( have_rows('product_gallery') ): the_row(); // Loop through rows ?>
             <?php 
@@ -508,7 +547,7 @@ get_header();
 
 <script>
     jQuery(document).ready(function($) {
-        $('.owl-carousel').owlCarousel({
+        $('.productslider').owlCarousel({
             loop: true,
             margin: 20,
             nav: true,
@@ -533,6 +572,19 @@ get_header();
             }
         });
     });
+
+
+    jQuery(document).ready(function ($) {
+    $('.factoryslider').owlCarousel({
+        loop: true,
+        margin: 0,
+        nav: true,
+        items: 1, // Show one item at a time
+        autoplay: true,
+        autoplayTimeout: 3000,
+        autoplayHoverPause: true
+    });
+});
 </script>
 
 

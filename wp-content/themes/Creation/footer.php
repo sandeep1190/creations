@@ -40,14 +40,14 @@
             </footer><!--.page-footer-->
             <div class="footerLogo">
                     <div class="container">
-                        <div class="row">
+                        <div class="row justify-content-center">
                             <div class="blockImg">
                                 <div class="innerlogo">
                                 <img src="http://3.6.49.70/creations/wp-content/uploads/2024/12/width_201.png">
                                 </div>
                                     
                             </div>
-                            <div class="blockImg">
+                            <!-- <div class="blockImg">
                                 <div class="innerlogo">
                                     <img src="http://3.6.49.70/creations/wp-content/uploads/2025/01/IGI-logo.png">
                                 </div>
@@ -56,7 +56,7 @@
                                 <div class="innerlogo">
                                     <img src="http://3.6.49.70/creations/wp-content/uploads/2025/01/GIA-logo.png">
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="blockImg">
                                 <div class="innerlogo">
                                     <img src="http://3.6.49.70/creations/wp-content/uploads/2025/01/Costco-logo.png">
