@@ -577,6 +577,7 @@ width: 20%;
 .repeaterRow:nth-child(odd) {
     flex-direction: row-reverse;
     margin-top: 55px;
+    align-items: start !important;
 }
 #contactUs {
     padding: 80px 0;
