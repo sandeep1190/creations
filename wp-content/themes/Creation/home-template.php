@@ -580,7 +580,7 @@ endif;
         margin: 0,
         nav: true,
         items: 1, // Show one item at a time
-        autoplay: true,
+        autoplay: false,
         autoplayTimeout: 3000,
         autoplayHoverPause: true
     });
