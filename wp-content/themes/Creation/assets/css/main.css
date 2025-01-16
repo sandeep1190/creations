@@ -407,8 +407,8 @@ p.cneterserverice {
 }
 .owl-theme.owl-carousel.factoryslider .owl-nav button.owl-prev {
     position: absolute;
-    background: #000 !important;
-    color: #fff !important;
+    background: #fff !important;
+    color: #000 !important;
     padding: 0 14px !important;
     margin: 0 !important;
     width: 10px;
@@ -429,8 +429,8 @@ p.cneterserverice {
 }
 .owl-theme.owl-carousel.factoryslider .owl-nav button.owl-next {
     position: absolute;
-    background: #000 !important;
-    color: #fff !important;
+    background: #fff !important;
+    color: #000 !important;
     padding: 0 14px !important;
     margin: 0 !important;
     width: 10px;
