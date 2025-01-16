@@ -421,7 +421,12 @@ p.cneterserverice {
     top: -18px;
     left: -5px;
 }
-
+.banner-content p {
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0px;
+}
 .owl-theme.owl-carousel.factoryslider .owl-nav button.owl-next {
     position: absolute;
     background: #000 !important;
