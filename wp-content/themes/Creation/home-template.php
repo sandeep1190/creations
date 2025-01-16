@@ -144,7 +144,7 @@ get_header();
             </div>
             <div class="row justify-content-between align-items-center">
                 <!-- Left Column: Image -->
-                <div class="col-lg-4">
+                <div class="col-lg-5">
                     <div class="uploaded-video">
                     <video autoplay loop muted>
     <source src="http://3.6.49.70/creations/wp-content/uploads/2025/01/factory1.mp4" type="video/mp4" />
@@ -178,7 +178,7 @@ get_header();
 
 
                 <!-- Right Column: Heading and Content -->
-                <div class="col-lg-8">
+                <div class="col-lg-7">
                     <?php
                     if ($about_us_group) {
                         // About Description
@@ -217,7 +217,7 @@ get_header();
             </div>
             <div class="row justify-content-between  align-items-center">
                 <!-- Left Column: Image -->
-                <div class="col-lg-4">
+                <div class="col-lg-5">
                 <div class="uploaded-video">
                 <?php
 if (have_posts()) :
@@ -292,7 +292,7 @@ endif;
 
 
                 <!-- Right Column: Heading and Content -->
-                <div class="col-lg-8">
+                <div class="col-lg-7">
                     <?php
                     if ($about_us_group) {
                         // About Description
