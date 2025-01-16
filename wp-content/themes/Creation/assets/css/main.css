@@ -409,14 +409,14 @@ p.cneterserverice {
     position: absolute;
     background: #fff !important;
     color: #000 !important;
-    padding: 0 14px !important;
+    padding: 0 10px !important;
     margin: 0 !important;
     width: 10px;
-    height: 43px;
-    left: 0;
+    height: 38px;
+    left: 4px;
 }
 .owl-theme.owl-carousel.factoryslider .owl-nav button.owl-prev span {
-    font-size: 45px;
+    font-size: 43px;
     position: relative;
     top: -18px;
     left: -5px;
@@ -431,14 +431,14 @@ p.cneterserverice {
     position: absolute;
     background: #fff !important;
     color: #000 !important;
-    padding: 0 14px !important;
+    padding: 0 10px !important;
     margin: 0 !important;
     width: 10px;
-    height: 43px;
-    right: 0;
+    height: 38px;
+    right: 4px;
 }
 .owl-theme.owl-carousel.factoryslider .owl-nav button.owl-next span {
-    font-size: 45px;
+    font-size: 43px;
     position: relative;
     top: -18px;
     left: -5px;
