@@ -64,7 +64,7 @@
                             </div>
                             <div class="blockImg">
                                 <div class="innerlogo">
-                                    <img src="  in/wp-content/uploads/2025/01/Walmart-logo.png">
+                                    <img src="http://www.creationjewel.co.in/wp-content/uploads/2025/01/Walmart-logo.png">
                                 </div>
                             </div>
                         </div>
