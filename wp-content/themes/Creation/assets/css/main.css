@@ -576,7 +576,7 @@ width: 20%;
 }
 .repeaterRow:nth-child(odd) {
     flex-direction: row-reverse;
-    margin-top: 55px;
+    margin-top: 10px;
     align-items: start !important;
 }
 #contactUs {
