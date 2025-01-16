@@ -711,6 +711,9 @@ color:#fff;
 }
 
 @media (max-width:800px){
+    .desc p br {
+        display: none;
+    }
     header.page-header.page-header-sitebrand-topbar {
         display: flex;
         justify-content: space-between;
