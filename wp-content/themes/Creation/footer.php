@@ -43,7 +43,7 @@
                         <div class="row justify-content-center">
                             <div class="blockImg">
                                 <div class="innerlogo">
-                                <img src="http://www.creationjewel.co.in/wp-content/uploads/2024/12/width_201.png">
+                                <img src="https://www.creationjewel.co.in/wp-content/uploads/2024/12/width_201.png">
                                 </div>
                                     
                             </div>
@@ -59,12 +59,12 @@
                             </div> -->
                             <div class="blockImg">
                                 <div class="innerlogo">
-                                    <img src="http://www.creationjewel.co.in/wp-content/uploads/2025/01/Costco-logo.png">
+                                    <img src="https://www.creationjewel.co.in/wp-content/uploads/2025/01/Costco-logo.png">
                                 </div>
                             </div>
                             <div class="blockImg">
                                 <div class="innerlogo">
-                                    <img src="http://www.creationjewel.co.in/wp-content/uploads/2025/01/Walmart-logo.png">
+                                    <img src="https://www.creationjewel.co.in/wp-content/uploads/2025/01/Walmart-logo.png">
                                 </div>
                             </div>
                         </div>
