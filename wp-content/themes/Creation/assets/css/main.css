@@ -884,7 +884,7 @@ section#factory {
         margin: 40px 0 0 !important;
     }
     .service-inner-description h3, .service-content h3{
-        text-align: left;
+        text-align: center;
     }
     #innerProduct {
         height: 380px;
