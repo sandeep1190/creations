@@ -655,7 +655,7 @@ color:#fff;
 .uploaded-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 @media (max-width:1440px){
     .navbar-nav li {
@@ -783,14 +783,21 @@ color:#fff;
     color: #fff;
 }
 
-#factory .uploaded-video {
+/* #factory .uploaded-video {
     height: 426px;
-}
+} */
 .about-description ul {
    
     margin: 0;
     text-align: left;
+    padding: 0 0 0 18px;
 } 
+.service-inner-description {
+    text-align: left;
+}
+.service-content {
+    text-align: left;
+}
 section#factory {
     margin-bottom: 0;
 }
@@ -838,6 +845,10 @@ section#factory {
     #mapSection .des {
         text-align: center;
         font-size: 16px;
+    }
+    #aboutUs .col-lg-4 img {
+        height: 390px;
+        object-fit: cover;
     }
     .about-description, .service-inner-description, .des_res, .service-content{
         font-size: 16px;
@@ -888,5 +899,8 @@ section#factory {
     }
     .banner-content {
         top: 40%;
+    }
+    #factory .about-description {
+        text-align: left;
     }
 }
