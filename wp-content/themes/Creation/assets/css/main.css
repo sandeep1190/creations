@@ -223,7 +223,9 @@ body{
     font-size: 18px;
     margin-top: 0;
 }
-
+.video-section .uploaded-image img {
+    object-fit: cover;
+}
 
 /* Fix Bootstrap 4 */
 .navbar {
@@ -880,6 +882,9 @@ section#factory {
         font-size: 14px;
         text-align: justify !important;
         margin: 40px 0 0 !important;
+    }
+    .service-inner-description h3, .service-content h3{
+        text-align: left;
     }
     #innerProduct {
         height: 380px;
