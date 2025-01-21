@@ -147,7 +147,7 @@ get_header();
                 <div class="col-lg-5">
                     <div class="uploaded-video">
                     <video autoplay loop muted>
-    <source src="http://www.creationjewel.co.in/wp-content/uploads/2025/01/factory1.mp4" type="video/mp4" />
+    <source src="https://www.creationjewel.co.in/wp-content/uploads/2025/01/factory1.mp4" type="video/mp4" />
 </video>
                 </div>
     <!-- <?php
